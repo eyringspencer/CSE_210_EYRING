@@ -12,6 +12,9 @@ class Program
         float f  = 3.14F; /* the F tells the computer to really treat this as a float. Without it you're trying to stuff a double into a 32 bit float format. It doesn't have to be capital F, but Brother Barzee likes that a bit better because it's standard for when he writes hexidecimal code */
         double d = 5.21;
 
+        // use the assigned variables
+        Console.WriteLine($"The int is {a} and string 1 is {s} and string 2 is {s2} and the float is {f} and the couble is {d}");
+
         // THIS IS A PROGRAM TO COMPUTE THE AREA OF A CIRCLE
 
         // Get the radius of the circle from the user
