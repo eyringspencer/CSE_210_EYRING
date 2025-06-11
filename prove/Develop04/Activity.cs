@@ -59,13 +59,17 @@ public class Activity
     }
 
 
+
+
+/* code hints from brother barzee
+
     public void RunActivity()
     {
         Program.ShowSpinner(3);
     }
     // Buffer animation
 
-
+*/
 
 
 

@@ -1,14 +1,13 @@
-public class Breathing : Activity
-{
-    // Attributes
+// public class Breathing : Activity
+// {
+//     // Attributes
+
+//     private string _breatheIn;
+
+//     private string _breatheOut;
 
 
-    // Constructors
-    public Breathing(int duration)
-    : base("Breathing",
-        "think clearly as you breathe", 0, "")
-    {
-    }
+//     // Constructors
 
-    //Methods
-}
+//     //Methods
+// }
