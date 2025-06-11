@@ -15,7 +15,7 @@ public class Activity
 {
     // Attributes
 
-    private string _welcomeText;
+    private string _name;
 
     private string _description;
 
@@ -27,9 +27,9 @@ public class Activity
     // Constructors 
 
     // default
-    public Activity(string welcomeText, string description, int duration, string endMessage)
+    public Activity(string name, string description, int duration, string endMessage)
     {
-        _welcomeText = welcomeText;
+        _name = name;
 
         _description = description;
 
@@ -37,6 +37,33 @@ public class Activity
 
         _endMessage = endMessage;
     }
+
+    // Methods
+
+    // return a string that has the welcome message with the name of the activity
+    public string GetWelcomeText()
+    {
+        return $"Welcome to the {_name} Activity.;";
+    }
+
+    // return the description
+    public string GetDescriptionText()
+    {
+        return $"This activity will help you to {_description}";
+    }
+
+    // setter for the duration converting seconds to miliseconds
+    public void SetDuration(int durationSeconds)
+    {
+        _duration = durationSeconds * 1000;
+    }
+
+
+    public void RunActivity()
+    {
+        Program.ShowSpinner(3);
+    }
+    // Buffer animation
 
 
 
