@@ -43,7 +43,7 @@ public class Activity
     // return a string that has the welcome message with the name of the activity
     public string GetWelcomeText()
     {
-        return $"Welcome to the {_name} Activity.;";
+        return $"Welcome to the {_name} Activity.";
     }
 
     // return the description
@@ -55,7 +55,8 @@ public class Activity
     // setter for the duration converting seconds to miliseconds
     public void SetDuration(int durationSeconds)
     {
-        _duration = durationSeconds * 1000;
+        // _duration = durationSeconds * 1000;
+        _duration = durationSeconds;
     }
 
 

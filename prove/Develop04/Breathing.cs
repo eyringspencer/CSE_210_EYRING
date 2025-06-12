@@ -1,13 +1,22 @@
-// public class Breathing : Activity
-// {
-//     // Attributes
+public class Breathing : Activity
+{
+    // Attributes
 
-//     private string _breatheIn;
+    private string _breatheIn = "Breathe in...";
 
-//     private string _breatheOut;
+    private string _breatheOut = "Now Breathe Out";
 
 
-//     // Constructors
+    // Constructors
 
-//     //Methods
-// }
+    public Breathing(int duration) : base("Breathing", "relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.", duration, "Well done!!")
+    {
+
+    }
+
+
+
+    //Methods
+    
+    // i think i am going to have seperate animation methods for each of the child classes
+}
