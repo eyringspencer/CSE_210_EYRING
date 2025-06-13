@@ -17,6 +17,17 @@ public class Breathing : Activity
 
 
     //Methods
-    
-    // i think i am going to have seperate animation methods for each of the child classes
+
+    // get the breathe in text
+    public string GetBreatheIn()
+    {
+        return _breatheIn;
+    }
+
+    // get breathe out text 
+    public string GetBreatheout()
+    {
+        return _breatheOut;
+    }
+
 }

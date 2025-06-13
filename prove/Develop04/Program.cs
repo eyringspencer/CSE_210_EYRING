@@ -77,10 +77,70 @@ class Program
         // SECOND SCREEN
         Console.Clear();
         Console.WriteLine("Prepare to begin...");
-        
+
+        // waiting animation for 5 seconds
+
         // run the breathing animation for [x] seconds (figure out the timing later after thinking about it.)
 
 
 
     }
+
+
+    static void RunBreathing(Breathing breathing)
+    {
+        Console.WriteLine();
+        Console.Write(breathing.GetBreatheIn());
+
+    }
+
+
+    // function for a single line countdown animation
+    static void CountDownAnimation(int seconds)
+    {
+
+        for (int i = seconds; i > 0; i--)
+        {
+            // print the current seconds to the console
+            string countString = i.ToString();
+            Console.Write(countString);
+            Thread.Sleep(1000);
+
+            //clear the console
+            Console.Write(new string('\b', countString.Length));
+            Console.Write(new string(' ', countString.Length));
+            Console.Write(new string('\b', countString.Length));
+        }
+
+
+
+
+
+
+
+
+
+
+        // if (seconds > 10)
+        // {
+        //     for (int i = seconds; i > 0; i--)
+        //     {
+        //         Console.Write(i);
+        //         Thread.Sleep(1000);
+        //         Console.Write("\b \b");
+        //     }
+        // }
+
+        // else
+        // {
+        //     for (int i = seconds; i > 0; i--)
+        //     {
+        //         Console.Write(i);
+        //         Thread.Sleep(1000);
+        //         Console.Write("\b\b \b\b");
+        //     } 
+        // }
+
+    }
+    
 }
