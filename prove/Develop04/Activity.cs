@@ -52,26 +52,22 @@ public class Activity
         return $"This activity will help you to {_description}";
     }
 
-    // setter for the duration converting seconds to miliseconds
+    // setter for the duration
     public void SetDuration(int durationSeconds)
     {
-        // _duration = durationSeconds * 1000;
+        // _duration = durationSeconds
         _duration = durationSeconds;
     }
 
-
-
-
-/* code hints from brother barzee
-
-    public void RunActivity()
+    // getter for the duration
+    public int GetDuration()
     {
-        Program.ShowSpinner(3);
+        return _duration;
     }
-    // Buffer animation
 
-*/
-
-
+    public string GetEndMessage()
+    {
+        return _endMessage;
+    }
 
 }
