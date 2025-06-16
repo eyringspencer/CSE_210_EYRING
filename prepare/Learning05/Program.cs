@@ -1,5 +1,45 @@
 using System;
+using System.ComponentModel;
+using System.Reflection.Metadata;
 using System.Security.Cryptography.X509Certificates;
+
+
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Step 5: Test Square
+        Square square1 = new Square("blue", 4);
+
+        Console.WriteLine($"{square1.Color} - {square1.GetArea()}");
+
+        // Step 6: test rectangle and circle
+        Rectangle rectangle1 = new Rectangle("Purple", 4, 5);
+        Circle circle1 = new Circle("Yellow", 4);
+        Console.WriteLine($"{rectangle1.Color} - {rectangle1.GetArea()}");
+        Console.WriteLine($"{circle1.Color} - {circle1.GetArea()}");
+
+
+        // Step 7: Build a List
+
+        List<Shape> shapesList = new List<Shape>();
+        shapesList.Add(new Square("blue", 4));
+        shapesList.Add(new Rectangle("Purple", 4, 5));
+        shapesList.Add(new Circle("Yellow", 4));
+
+        foreach (Shape shape in shapesList)
+        {
+            Console.Write(shape.Color);
+            Console.WriteLine(shape.GetArea());
+        }
+
+    }
+}
+
+
+
+
 
 
 public abstract class Shape
@@ -18,7 +58,7 @@ public abstract class Shape
 
     //abstract area method
     public abstract double GetArea();
-    
+
 }
 
 
@@ -47,7 +87,7 @@ public class Rectangle : Shape
     public double Width { get; set; }
 
     // constructor
-    public Rectangle(double length, double width, string color) : base(color)
+    public Rectangle(string color, double length, double width) : base(color)
     {
         Length = length;
         Width = width;
@@ -60,22 +100,24 @@ public class Rectangle : Shape
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-class Program
+public class Circle : Shape
 {
-    static void Main(string[] args)
+    // properties 
+    public double Radius { get; set; }
+
+
+    // Constructors
+    public Circle(string color, double radius) : base(color)
     {
-        Console.WriteLine("Hello Learning05 World!");
+        Radius = radius;
     }
+
+    // Methods
+
+    public override double GetArea()
+    {
+        return 3.14 * (Radius * Radius);
+    }
+
+
 }
