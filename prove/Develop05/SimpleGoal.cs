@@ -10,7 +10,7 @@ public class SimpleGoal : Goal
     //Properties
 
     //Constructor
-    public SimpleGoal(string name, string description, int eventCount) : base("SimpleGoal", name, description, eventCount)
+    public SimpleGoal(string name, string description) : base("SimpleGoal", name, description)
     {
         
     }

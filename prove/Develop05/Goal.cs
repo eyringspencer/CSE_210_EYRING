@@ -20,19 +20,16 @@ public abstract class Goal
 
     public string Description { get; set; }
 
-    public int EventCount { get; set; }
-
     //Constructor
-    public Goal(string goalType, string name, string description, int eventCount)
+    public Goal(string goalType, string name, string description)
     {
         GoalType = goalType;
         Name = name;
         Description = description;
-        EventCount = eventCount;
     }
 
     //Methods
-
+Z
     public abstract void RecordEvent();
 
     public abstract bool IsComplete();
