@@ -34,6 +34,7 @@ public abstract class Goal
 
     // add serialize and deserialize methods
 
+    public abstract string Serialize();
 
 }
 

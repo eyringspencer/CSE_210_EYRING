@@ -52,35 +52,34 @@ public class ChecklistGoal : Goal
         return $"{completionMarker} {Name} ({Description}) - Event Count: {_eventCount}/{_completionCount}";
 
     }
-    
+
+    public override string Serialize()
+    {
+        return $"{GoalType}:{Name},{Description},{Points},{IsComplete},{_eventCount},{_completionCount},{_bonusPoints}";
+    }
+
+
+    public static Goal Deserialize(string line)
+    {
+        string[] parts = line.Split(':');
+        string[] fields = parts[1].Split(',');
+        string name = fields[0];
+        string description = fields[1];
+        int points = int.Parse(fields[2]);
+        bool isComplete = bool.Parse(fields[3]);
+        int eventCount = int.Parse(fields[4]);
+        int completionCount = int.Parse(fields[5]);
+        int bonusPoints = int.Parse(fields[6]);
+
+        ChecklistGoal goal = new ChecklistGoal(name, description, points, completionCount, bonusPoints)
+        {
+            IsComplete = isComplete,
+            _eventCount = eventCount
+        };
+
+        return goal;
+    }    
     
 }
 
 
-
-
-
-// ///<summary>
-// /// A child class of goal for eternal goals that are marked complete after a certain number of events recorded
-// /// </summary>
-
-// public class ChecklistGoal : Goal
-// {
-//     //Attributes
-
-//     //Properties
-//     public int CompleteCount { get; set; }
-
-//     public int BonusPoints { get; set;}
-
-//     //Constructors
-//     public ChecklistGoal(string name, string description, int points, int completeCount, int bonusPoints) : base("Checklist Goal", name, description, 0, points)
-//     {
-//         CompleteCount = completeCount;
-//         BonusPoints = bonusPoints;
-//     }
-
-//     //Methods
-
-
-// }

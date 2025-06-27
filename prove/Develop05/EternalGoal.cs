@@ -33,10 +33,32 @@ public class EternalGoal : Goal
         }
     }
 
-    //serialize method here
-    
-    //deserialize method here
-    
+    public override string Serialize()
+    {
+        return $"{GoalType}:{Name},{Description},{Points},{IsComplete},{EventCount}";
+    }
+
+    public static Goal Deserialize(string line)
+    {
+        string[] parts = line.Split(':');
+
+        string[] fields = parts[1].Split(',');
+
+        string name = fields[0];
+        string description = fields[1];
+        int points = int.Parse(fields[2]);
+        bool isComplete = bool.Parse(fields[3]);
+        int eventCount = int.Parse(fields[4]);
+
+
+        EternalGoal goal = new EternalGoal(name, description, points)
+        {
+            IsComplete = isComplete,
+            EventCount = eventCount
+        };
+
+        return goal;
+    }
 
 
 } 

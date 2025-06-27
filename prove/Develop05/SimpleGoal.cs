@@ -33,6 +33,30 @@ public class SimpleGoal : Goal
         return $"{completionMarker} {Name} ({Description})";
     }
 
+    public override string Serialize()
+    {
+        return $"{GoalType}:{Name},{Description},{Points},{IsComplete}";
+    }
+
+    public static Goal Deserialize(string line)
+    {
+        string[] parts = line.Split(':');
+
+        string[] fields = parts[1].Split(',');
+
+        string name = fields[0];
+        string description = fields[1];
+        int points = int.Parse(fields[2]);
+        bool isComplete = bool.Parse(fields[3]);
+
+        SimpleGoal goal = new SimpleGoal(name, description, points)
+        {
+            IsComplete = isComplete
+        };
+
+        return goal;
+    }
+
     
 }
 
