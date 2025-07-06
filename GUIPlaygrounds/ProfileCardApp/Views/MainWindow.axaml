@@ -1,0 +1,51 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ProfileCardApp.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="ProfileCardApp.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="ProfileCardApp">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Border Padding ="20" Margin = "40" Background = "#FF333333" CornerRadius = "10">
+        <!-- <StackPanel HorizontalAlignment = "Center" VerticalAlignment = "Center" Spacing = "12">
+            <TextBlock Text = "{Binding Name}" FontSize = "24" FontWeight = "Bold" HorizontalAlignment = "Center" />
+            <TextBlock Text = "Age:" FontWeight = "SemiBold"/>
+            <TextBlock Text = "{Binding Age}" />
+            <TextBlock Text = "Bio:" FontWeight = "SemiBold" Margin = "0, 10, 0, 0" />
+            <TextBlock Text = "{Binding Bio}" TextWrapping = "Wrap"/>
+            <Button Content = "Shuffle Info" Command = "{Binding ShuffleProfileCommand}"/>
+        </StackPanel> -->
+
+        <Grid RowDefinitions = "Auto, Auto, Auto, Auto, Auto" ColumnDefinitions = "Auto, *" ColumnSpacing = "10" RowSpacing = "10">
+            <TextBlock Text = "Name:" Grid.Row = "0" Grid.Column = "0" FontWeight = "SemiBold" />
+            <TextBlock Text = "{Binding Name}" Grid.Row = "0" Grid.Column = "1"/>
+
+            <TextBlock Text = "Age:" Grid.Row = "1" Grid.Column = "0" FontWeight = "SemiBold" />
+            <TextBlock Text = "{Binding Age}" Grid.Row = "1" Grid.Column = "1"/>
+
+            <TextBlock Text = "Bio:" Grid.Row = "2" Grid.Column = "0" FontWeight = "SemiBold" VerticalAlignment = "Top" />
+            <TextBlock Text = "{Binding Bio}" Grid.Row = "2" Grid.Column = "1" TextWrapping = "Wrap"/>
+
+            <Button Content = "Shuffle Bio"
+                    Command = "{Binding ShuffleProfileCommand}"
+                    Grid.Row = "4" Grid.ColumnSpan = "2"
+                    HorizontalContentAlignment="Center"
+                    Margin = "0, 20, 0, 0"/>
+                    
+
+
+        </Grid>
+
+
+
+    </Border>
+</Window>

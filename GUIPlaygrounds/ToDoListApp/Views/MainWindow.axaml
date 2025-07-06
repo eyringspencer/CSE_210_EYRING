@@ -1,0 +1,50 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:ToDoListApp.ViewModels"
+        xmlns:conv="clr-namespace:ToDoListApp.Models"
+        x:Class="ToDoListApp.Views.MainWindow"
+        Title="To-Do List"
+        Width="400" Height="600">
+
+  <!-- Converter registration -->
+  <Window.Resources>
+    <conv:InverseBoolConverter x:Key="InverseBoolConverter" />
+  </Window.Resources>
+
+  <StackPanel Margin="12" Spacing="10">
+
+    <!-- Input Field & Add Button -->
+    <StackPanel Orientation="Horizontal" Spacing="8">
+      <TextBox Width="250" Text="{Binding InputText}" Watermark="Enter a task..." />
+      <Button Content="Add" Command="{Binding AddTaskCommand}" />
+    </StackPanel>
+
+    <!-- Tasks List -->
+    <ItemsControl ItemsSource="{Binding Tasks}">
+      <ItemsControl.ItemTemplate>
+        <DataTemplate>
+          <Border BorderThickness="0,0,0,1" BorderBrush="Gray" Padding="4">
+            <StackPanel Orientation="Horizontal" Spacing="8">
+              <TextBox Text="{Binding Text}" Width="200"
+                       IsVisible="{Binding IsEditing}" />
+              <TextBlock Text="{Binding Text}" Width="200"
+                         IsVisible="{Binding IsEditing, Converter={StaticResource InverseBoolConverter}}" />
+              <Button Content="Edit"
+                      IsVisible="{Binding IsEditing, Converter={StaticResource InverseBoolConverter}}"
+                      Command="{Binding DataContext.EditTaskCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                      CommandParameter="{Binding}" />
+              <Button Content="Save"
+                      IsVisible="{Binding IsEditing}"
+                      Command="{Binding DataContext.SaveEditCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                      CommandParameter="{Binding}" />
+              <Button Content="Delete"
+                      Command="{Binding DataContext.DeleteTaskCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                      CommandParameter="{Binding}" />
+            </StackPanel>
+          </Border>
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+    </ItemsControl>
+    
+  </StackPanel>
+</Window>
