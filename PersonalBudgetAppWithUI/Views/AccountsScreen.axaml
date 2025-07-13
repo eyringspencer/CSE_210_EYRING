@@ -1,0 +1,121 @@
+<UserControl
+    x:Class="PersonalBudgetAppWithUI.Views.AccountsScreen"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:PersonalBudgetAppWithUI.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:DataType="vm:AccountsScreenViewModel"
+    mc:Ignorable="d">
+
+
+    <Design.DataContext>
+        <vm:AccountsScreenViewModel />
+    </Design.DataContext>
+
+    <StackPanel Spacing="10">
+        <!--  Screen Header  -->
+        <TextBlock
+            Width="200"
+            Margin="0,20,0,0"
+            Background="LightBlue"
+            FontSize="20"
+            FontWeight="Bold"
+            Text="Accounts"
+            TextAlignment="Center" />
+
+
+        <StackPanel Orientation="Horizontal" Spacing="10">
+            <TextBox
+                FontSize="12"
+                FontWeight="Bold"
+                Text="{Binding NewAccountName, Mode=TwoWay}"
+                Watermark="New Account Name" />
+            <TextBox
+                FontSize="12"
+                FontWeight="Bold"
+                Text="{Binding NewAccountType, Mode=TwoWay}"
+                Watermark="New Account Type" />
+
+            <TextBox
+                FontSize="12"
+                FontWeight="Bold"
+                Text="{Binding NewAccountBalance, Mode=TwoWay}"
+                Watermark="New Account Balance" />
+
+            <TextBox
+                FontSize="12"
+                FontWeight="Bold"
+                Text="{Binding NewAccountInstitution, Mode=TwoWay}"
+                Watermark="New Account Institution" />
+
+
+            <Button Command="{Binding AddAccountCommand}" Content="Add New Account" />
+        </StackPanel>
+
+        <Grid
+            HorizontalAlignment="Center"
+            ColumnDefinitions="Auto, Auto, Auto, Auto"
+            RowDefinitions="Auto">
+            <!--  Column 0 is for account name  -->
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="0"
+                FontSize="16"
+                FontWeight="SemiBold"
+                Text="Name"
+                TextAlignment="Left" />
+
+            <!--  Column 1 is for Account Type  -->
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="1"
+                FontSize="16"
+                FontWeight="SemiBold"
+                Text="Type"
+                TextAlignment="Left" />
+
+            <!--  Column 2 is for Balance  -->
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="2"
+                FontSize="16"
+                FontWeight="SemiBold"
+                Text="Balance"
+                TextAlignment="Left" />
+
+            <!--  Column 3 is for institution name  -->
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="3"
+                FontSize="16"
+                FontWeight="SemiBold"
+                Text="Institution"
+                TextAlignment="Left" />
+
+
+        </Grid>
+
+
+
+        <!--  List of accounts  -->
+        <ListBox
+            BorderBrush="Black"
+            BorderThickness="1"
+            ItemsSource="{Binding Accounts}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="Auto, Auto, Auto, Auto">
+                        <TextBlock Grid.Column="0" Text="{Binding Name}" />
+                        <TextBlock Grid.Column="1" Text="{Binding AccountType}" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+    </StackPanel>
+
+
+</UserControl>

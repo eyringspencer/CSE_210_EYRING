@@ -1,0 +1,105 @@
+<UserControl
+    x:Class="PersonalBudgetAppWithUI.Views.HomeScreen"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:PersonalBudgetAppWithUI.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:DataType="vm:HomeScreenViewModel"
+    mc:Ignorable="d">
+
+    <Design.DataContext>
+        <vm:HomeScreenViewModel />
+    </Design.DataContext>
+
+
+    <Grid ColumnDefinitions="*, *, *" RowDefinitions="Auto, *">
+
+
+        <!--  Window Header centered and at the top  -->
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="1"
+            Width="500"
+            Margin="0,20,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Background="DarkBlue"
+            FontSize="20"
+            FontWeight="Bold"
+            Foreground="White"
+            Text="Welcome to Your Personal Budget Application"
+            TextAlignment="Center" />
+
+        <!--  Stack of buttons  -->
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="50,40,0,0"
+            Spacing="10">
+
+            <!--  Button for View Selected Budget  -->
+            <Button
+                Width="110"
+                HorizontalContentAlignment="Center"
+                Background="LightGray"
+                BorderBrush="Black"
+                BorderThickness="2"
+                Content="View Budget"
+                FontWeight="SemiBold" />
+
+            <!--  Button for Add Budget  -->
+            <Button
+                Width="110"
+                HorizontalContentAlignment="Center"
+                Background="LightGray"
+                BorderBrush="Black"
+                BorderThickness="2"
+                Content="Add Budget"
+                FontWeight="SemiBold" />
+
+            <!--  Button for Accounts  -->
+            <Button
+                Width="110"
+                HorizontalContentAlignment="Center"
+                Background="LightGray"
+                BorderBrush="Black"
+                BorderThickness="2"
+                Command="{Binding DataContext.ShowAccountsCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                Content="Accounts"
+                FontWeight="SemiBold" />
+        </StackPanel>
+
+        <!--  Budget listing area  -->
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="1"
+            Spacing="10">
+
+            <TextBlock
+                Margin="0,25,0,0"
+                HorizontalAlignment="Left"
+                FontSize="18"
+                FontWeight="Bold"
+                Text="Budgets" />
+
+            <ListBox ItemsSource="{Binding Budgets}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+
+        </StackPanel>
+
+
+    </Grid>
+
+
+
+
+</UserControl>

@@ -1,0 +1,92 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:GradebookApp.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="GradebookApp.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="GradebookApp">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="245"/>
+            <ColumnDefinition Width="245"/>
+        </Grid.ColumnDefinitions>
+
+        <!--Column 1 for student inputs and the list of students-->
+        <StackPanel Grid.Column="0" Spacing="20" Margin="20,10,0,0">
+            <TextBlock Text="Students" FontSize="16" FontWeight="Bold"/>
+            <StackPanel Orientation="Horizontal" Spacing="20">
+                <!--The textbox for the Student First name-->
+                <TextBox Text="{Binding NewFirstName, Mode=TwoWay}" Watermark="Enter First Name" FontSize="10" Width="100" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"/>
+                 <!--The textbox for the Student last name-->
+                <TextBox Text="{Binding NewLastName, Mode=TwoWay}" Watermark="Enter Last Name" FontSize="10" Width="100" Height="18" VerticalContentAlignment="Bottom"/>
+            </StackPanel>
+
+            <!--Button to add a Student-->
+            <Button Content="Add Student"
+                    VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    FontSize="10"
+                    Command="{Binding AddStudentCommand}"
+                    HorizontalAlignment="Center"
+                    Width="80"/> 
+ 
+            <!--List of students-->
+            <ListBox ItemsSource="{Binding Students}"
+                    SelectedItem="{Binding SelectedStudent}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding FullName}" Margin="5"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+        
+
+        <!--Column 2 for grade inputs and the selected student's grade-->
+        <StackPanel Grid.Column="1" Spacing="20" Margin="20,10,0,0">
+            <TextBlock Text="Grades" FontSize="16" FontWeight="Bold"/>
+            <StackPanel Orientation="Horizontal" Spacing="20">
+                <!--textbox for the subject name-->
+                <TextBox Text="{Binding NewSubjectName, Mode=TwoWay}" Watermark="Enter Subject" FontSize="10" Width="100"/>
+                <!--box for the grade score-->
+                <TextBox Text="{Binding Score, Mode=TwoWay}" Watermark="Enter Score" FontSize="10" Width="100"/>
+            </StackPanel>
+
+            <!--Button to add a grade-->
+            <Button Content="Add Grade"
+                    VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    FontSize="10"
+                    Command="{Binding AddGradeCommand}"
+                    HorizontalAlignment="Center"
+                    Width="80"/>
+            
+
+            <!--Grades List-->
+            <TextBlock Text="Selected Student's Grades" FontSize="12" FontWeight="SemiBold"/>
+            <ListBox ItemsSource="{Binding SelectedStudent.Grades}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Subject}" Margin="5"/>
+                            <TextBlock Text="{Binding Score}" Margin="5"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+
+    </Grid>
+    
+
+</Window>

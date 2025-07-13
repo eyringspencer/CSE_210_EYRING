@@ -1,31 +1,46 @@
-using System.Reflection;
 
-public abstract class Transaction
+
+
+using System.ComponentModel;
+using System.Linq.Expressions;
+using System.Reflection.Metadata.Ecma335;
+
+public class Transaction
 {
     //properties
 
-    public string Name { get; set; }
+    public DateTime Date { get; set; }
+
+    public decimal Amount { get; set; }
+
+    public string Vendor { get; set; }
 
     public string Description { get; set; }
 
-    public double Amount { get; set; }
+    public string Type { get; set; }
 
-    public DateTime TimeStamp { get; set; }
-
-
+    public string EnvelopeName{ get; set; }
 
 
-    //constructors
-    public Transaction(string name, string description, double amount, DateTime timeStamp)
+
+
+
+    //constructor
+    public Transaction(DateTime date, decimal amount, string vendor, string description, string type, string envelopeName)
     {
-        Name = name;
-        Description = description;
+        Date = date;
         Amount = amount;
-        TimeStamp = timeStamp;
+        Vendor = vendor;
+        Description = description;
+        Type = type;
+        EnvelopeName = envelopeName;
 
     }
 
-    // methods 
 
-    
+    //method
+
+
+
+
 }

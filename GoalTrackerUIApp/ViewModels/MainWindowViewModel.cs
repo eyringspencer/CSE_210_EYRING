@@ -17,8 +17,8 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public ObservableCollection<Goal> Goals { get; set; } = new();
 
-    [RelayCommand]
     private void CreateSampleGoal()
+    [RelayCommand]
     {
         var goal = new SimpleGoal("NewSimpleGoal", "Demo Goal", 100);
     }
