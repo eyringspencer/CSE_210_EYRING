@@ -13,6 +13,9 @@ namespace PersonalBudgetAppWithUI
     {
         public override void Initialize()
         {
+
+            //could initialize here
+            //a singleton would be initialized here or somewhere else in early code
             AvaloniaXamlLoader.Load(this);
         }
 

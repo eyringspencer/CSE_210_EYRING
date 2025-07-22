@@ -15,7 +15,7 @@
     </Design.DataContext>
 
 
-    <Grid ColumnDefinitions="*, *, *" RowDefinitions="Auto, *">
+    <Grid RowDefinitions="Auto, *">
 
 
         <!--  Window Header centered and at the top  -->
@@ -37,28 +37,21 @@
         <StackPanel
             Grid.Row="1"
             Grid.Column="0"
-            Margin="50,40,0,0"
+            Margin="0,50,0,0"
+            HorizontalAlignment="Center"
             Spacing="10">
 
-            <!--  Button for View Selected Budget  -->
+            <!--  Button Budgets  -->
             <Button
                 Width="110"
                 HorizontalContentAlignment="Center"
                 Background="LightGray"
                 BorderBrush="Black"
                 BorderThickness="2"
-                Content="View Budget"
+                Command="{Binding ShowBudgetsScreenCommand}"
+                Content="Budgets"
                 FontWeight="SemiBold" />
 
-            <!--  Button for Add Budget  -->
-            <Button
-                Width="110"
-                HorizontalContentAlignment="Center"
-                Background="LightGray"
-                BorderBrush="Black"
-                BorderThickness="2"
-                Content="Add Budget"
-                FontWeight="SemiBold" />
 
             <!--  Button for Accounts  -->
             <Button
@@ -67,35 +60,10 @@
                 Background="LightGray"
                 BorderBrush="Black"
                 BorderThickness="2"
-                Command="{Binding DataContext.ShowAccountsCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                Command="{Binding ShowAccountsCommand}"
                 Content="Accounts"
                 FontWeight="SemiBold" />
         </StackPanel>
-
-        <!--  Budget listing area  -->
-        <StackPanel
-            Grid.Row="1"
-            Grid.Column="1"
-            Spacing="10">
-
-            <TextBlock
-                Margin="0,25,0,0"
-                HorizontalAlignment="Left"
-                FontSize="18"
-                FontWeight="Bold"
-                Text="Budgets" />
-
-            <ListBox ItemsSource="{Binding Budgets}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}" />
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-
-
-        </StackPanel>
-
 
     </Grid>
 

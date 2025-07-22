@@ -15,11 +15,23 @@
         <vm:AccountsScreenViewModel />
     </Design.DataContext>
 
-    <StackPanel Spacing="10">
+    <Grid Margin="10" RowDefinitions="Auto, Auto, Auto, Auto, Auto, *">
+        <!--  Return Home Button  -->
+        <Button
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="20,10,0,0"
+            HorizontalAlignment="Left"
+            Command="{Binding BackToHomeScreenCommand}"
+            Content="Back to Home" />
+
         <!--  Screen Header  -->
         <TextBlock
+            Grid.Row="1"
+            Grid.Column="3"
             Width="200"
-            Margin="0,20,0,0"
+            Margin="0,0,0,0"
+            HorizontalAlignment="Center"
             Background="LightBlue"
             FontSize="20"
             FontWeight="Bold"
@@ -27,42 +39,59 @@
             TextAlignment="Center" />
 
 
-        <StackPanel Orientation="Horizontal" Spacing="10">
+        <StackPanel
+            Grid.Row="2"
+            Grid.Column="0"
+            Margin="20,20,0,20"
+            HorizontalAlignment="Left"
+            Orientation="Horizontal"
+            Spacing="10">
             <TextBox
+                Width="150"
                 FontSize="12"
                 FontWeight="Bold"
                 Text="{Binding NewAccountName, Mode=TwoWay}"
                 Watermark="New Account Name" />
-            <TextBox
+
+            <ComboBox
+                Width="166"
                 FontSize="12"
                 FontWeight="Bold"
-                Text="{Binding NewAccountType, Mode=TwoWay}"
-                Watermark="New Account Type" />
+                ItemsSource="{Binding AccountTypes}"
+                PlaceholderText="Select Account Type"
+                SelectedValue="{Binding NewAccountType, Mode=TwoWay}" />
+
 
             <TextBox
+                Width="100"
                 FontSize="12"
                 FontWeight="Bold"
                 Text="{Binding NewAccountBalance, Mode=TwoWay}"
-                Watermark="New Account Balance" />
+                Watermark="New Balance" />
 
             <TextBox
+                Width="159"
                 FontSize="12"
                 FontWeight="Bold"
                 Text="{Binding NewAccountInstitution, Mode=TwoWay}"
                 Watermark="New Account Institution" />
 
 
-            <Button Command="{Binding AddAccountCommand}" Content="Add New Account" />
+            <Button Command="{Binding AddAccountCommand}" Content="{Binding AddAccountButtonText}" />
         </StackPanel>
 
         <Grid
-            HorizontalAlignment="Center"
-            ColumnDefinitions="Auto, Auto, Auto, Auto"
+            Grid.Row="3"
+            Grid.Column="0"
+            HorizontalAlignment="Left"
+            ColumnDefinitions="200, 150, 150, 150"
             RowDefinitions="Auto">
+
             <!--  Column 0 is for account name  -->
             <TextBlock
                 Grid.Row="0"
                 Grid.Column="0"
+                Margin="20,0,0,0"
                 FontSize="16"
                 FontWeight="SemiBold"
                 Text="Name"
@@ -102,20 +131,53 @@
 
         <!--  List of accounts  -->
         <ListBox
-            BorderBrush="Black"
-            BorderThickness="1"
-            ItemsSource="{Binding Accounts}">
+            Grid.Row="4"
+            Grid.Column="0"
+            Width="650"
+            HorizontalAlignment="Left"
+            ItemsSource="{Binding Accounts}"
+            SelectedItem="{Binding SelectedAccount, Mode=TwoWay}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid ColumnDefinitions="Auto, Auto, Auto, Auto">
-                        <TextBlock Grid.Column="0" Text="{Binding Name}" />
+                    <Grid ColumnDefinitions="200, 150, 150, 150">
+                        <TextBlock
+                            Grid.Column="0"
+                            Margin="20,0,0,0"
+                            Text="{Binding Name}" />
                         <TextBlock Grid.Column="1" Text="{Binding AccountType}" />
+                        <TextBlock Grid.Column="2" Text="{Binding Balance, StringFormat=C}" />
+                        <TextBlock Grid.Column="3" Text="{Binding Institution}" />
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
 
-    </StackPanel>
+        <StackPanel
+            Grid.Row="5"
+            Grid.Column="0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Orientation="Horizontal"
+            Spacing="10">
+            <Button
+                Width="100"
+                HorizontalContentAlignment="Center"
+                Command="{Binding EditAccountCommand}"
+                Content="Edit Account"
+                FontSize="10"
+                FontWeight="SemiBold" />
+
+            <Button
+                Width="100"
+                HorizontalContentAlignment="Center"
+                Command="{Binding DeleteAccountCommand}"
+                Content="Delete Account"
+                FontSize="10"
+                FontWeight="SemiBold" />
+
+        </StackPanel>
+
+    </Grid>
 
 
 </UserControl>

@@ -1,0 +1,134 @@
+<UserControl
+    x:Class="PersonalBudgetAppWithUI.Views.BudgetsScreen"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:PersonalBudgetAppWithUI.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:DataType="vm:BudgetsScreenViewModel"
+    mc:Ignorable="d">
+
+
+    <Design.DataContext>
+        <vm:BudgetsScreenViewModel />
+    </Design.DataContext>
+
+
+    <!--  Grid Layout for whole screen  -->
+    <Grid Margin="10" RowDefinitions="Auto, Auto, Auto, Auto, *">
+        <!--  Button to go back to home screen  -->
+        <Button
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="20,10,0,0"
+            HorizontalAlignment="Left"
+            Command="{Binding BackToHomeScreenCommand}"
+            Content="Back to Home" />
+
+
+
+        <!--  Budgets Screen Header  -->
+        <TextBlock
+            Grid.Row="1"
+            Width="200"
+            Margin="0,0,0,20"
+            VerticalAlignment="Center"
+            Background="LightBlue"
+            FontSize="20"
+            FontWeight="Bold"
+            Text="Budgets"
+            TextAlignment="Center" />
+
+
+
+
+        <!--  Budget Column Headers  -->
+        <Grid
+            Grid.Row="2"
+            HorizontalAlignment="Left"
+            ColumnDefinitions="200, 100, 100"
+            RowDefinitions="Auto">
+
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="20,0,0,0"
+                FontSize="16"
+                FontWeight="SemiBold"
+                Text="Name"
+                TextAlignment="Left" />
+
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="1"
+                FontSize="16"
+                FontWeight="SemiBold"
+                Text="Start"
+                TextAlignment="Left" />
+
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="2"
+                FontSize="16"
+                FontWeight="SemiBold"
+                Text="End "
+                TextAlignment="Left" />
+
+        </Grid>
+
+        <!--  List of Budgets  -->
+        <ListBox
+            Grid.Row="3"
+            Width="400"
+            HorizontalAlignment="Left"
+            ItemsSource="{Binding Budgets}"
+            SelectedItem="{Binding SelectedBudget}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="200, 100, 100 ">
+                        <TextBlock
+                            Grid.Column="0"
+                            Margin="20,0,0,0"
+                            Text="{Binding Name}" />
+                        <TextBlock Grid.Column="1" Text="{Binding StartDate, StringFormat='{}{0:MM/dd/yyyy}'}" />
+                        <TextBlock Grid.Column="2" Text="{Binding EndDate, StringFormat='{}{0:MM/dd/yyyy}'}" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+
+        <!--  Control Buttons  -->
+        <StackPanel
+            Grid.Row="4"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Orientation="Horizontal"
+            Spacing="10">
+
+            <Button
+                Width="100"
+                HorizontalContentAlignment="Center"
+                Content="View Budget"
+                FontSize="10"
+                FontWeight="SemiBold" />
+
+            <Button
+                Width="100"
+                HorizontalContentAlignment="Center"
+                Command="{Binding AddBudgetCommand}"
+                Content="Add New Budget"
+                FontSize="10"
+                FontWeight="SemiBold" />
+
+        </StackPanel>
+
+    </Grid>
+
+
+
+
+
+</UserControl>

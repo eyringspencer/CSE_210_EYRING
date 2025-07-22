@@ -1,0 +1,115 @@
+<UserControl
+    x:Class="PersonalBudgetAppWithUI.Views.AddBudgetScreen"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:PersonalBudgetAppWithUI.ViewModels"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    x:DataType="vm:AddBudgetScreenViewModel"
+    mc:Ignorable="d">
+
+
+
+    <!--  Data context for the previewer  -->
+    <Design.DataContext>
+        <vm:AddBudgetScreenViewModel />
+    </Design.DataContext>
+
+    <!--  Main grid for the whole screen  -->
+    <Grid Margin="10" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
+
+        <!--  Button to go back to budgets screen  -->
+        <Button
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="20,10,0,0"
+            HorizontalAlignment="Left"
+            Command="{Binding BacktoBudgetsScreenCommand}"
+            Content="Back to Budgets" />
+
+        <!--  Screen Header  -->
+        <TextBlock
+            Grid.Row="1"
+            Grid.Column="0"
+            Width="200"
+            Margin="0,0,0,20"
+            HorizontalAlignment="Center"
+            Background="LightBlue"
+            FontSize="20"
+            FontWeight="Bold"
+            Text="Open New Budget"
+            TextAlignment="Center" />
+
+        <!--  Input Fields and information  -->
+
+        <!--  Name information  -->
+        <TextBox
+            Grid.Row="2"
+            Margin="10,0,0,10"
+            HorizontalAlignment="Left"
+            HorizontalContentAlignment="Center"
+            Text="{Binding NewBudgetName, Mode=TwoWay}"
+            Watermark="Budget Name" />
+
+        <!--  Income information  -->
+        <StackPanel
+            Grid.Row="3"
+            Margin="0,0,0,10"
+            Orientation="Horizontal"
+            Spacing="10">
+            <TextBox
+                Margin="10,0,0,0"
+                HorizontalAlignment="Center"
+                HorizontalContentAlignment="Center"
+                Text="{Binding IncomeInput, Mode=TwoWay, StringFormat=C}"
+                Watermark="Period Income" />
+
+            <TextBlock
+                Margin="0,10,0,0"
+                VerticalAlignment="Center"
+                Text="{Binding IncomeDisplayText, Mode=TwoWay}" />
+
+        </StackPanel>
+
+        <!--  Start and end dates  -->
+        <StackPanel
+            Grid.Row="4"
+            Orientation="Horizontal"
+            Spacing="10">
+            <TextBox
+                Margin="10,0,0,0"
+                HorizontalAlignment="Center"
+                HorizontalContentAlignment="Center"
+                Text="{Binding NewStartDate, Mode=TwoWay}"
+                Watermark="Start Date" />
+            <TextBlock VerticalAlignment="Center" Text="--" />
+            <TextBox
+                Margin="0,0,0,0"
+                HorizontalAlignment="Center"
+                HorizontalContentAlignment="Center"
+                Text="{Binding NewEndDate, Mode=TwoWay}"
+                Watermark="End Date" />
+
+        </StackPanel>
+
+
+
+
+
+
+
+
+
+    </Grid>
+
+
+
+
+
+
+
+
+
+</UserControl>

@@ -14,27 +14,57 @@ namespace PersonalBudgetAppWithUI.ViewModels
 
         public MainWindowViewModel()
         {
-            CurrentView = new HomeScreen
-            {
-                DataContext = new HomeScreenViewModel()
-            };
+
+            //code can go here to load prelim and initialization code
+            ShowHome();
         }
 
         [RelayCommand]
         private void ShowHome()
         {
+
+            var homeViewModel = new HomeScreenViewModel();
+            homeViewModel.navigateToAccounts = ShowAccountsScreen;
+            homeViewModel.NavigateToBudgetsScreen = ShowBudgetsScreen;
             CurrentView = new HomeScreen
             {
-                DataContext = new HomeScreenViewModel()
+                DataContext = homeViewModel
             };
         }
 
         [RelayCommand]
         private void ShowAccountsScreen()
         {
+            var accountsViewModel = new AccountsScreenViewModel();
+            accountsViewModel.navigateToHomeScreen = ShowHome;
+
             CurrentView = new AccountsScreen
             {
-                DataContext = new AccountsScreenViewModel()
+                DataContext = accountsViewModel
+            };
+        }
+
+
+        [RelayCommand]
+        private void ShowBudgetsScreen()
+        {
+            var budgetsScreenViewModel = new BudgetsScreenViewModel();
+            budgetsScreenViewModel.NavigateToHomeScreen = ShowHome;
+            budgetsScreenViewModel.NavigateToAddBudgetScreen = ShowAddBudgetScreen;
+            CurrentView = new BudgetsScreen
+            {
+                DataContext = budgetsScreenViewModel
+            };
+        }
+
+        [RelayCommand]
+        private void ShowAddBudgetScreen()
+        {
+            var addBudgetScreenViewModel = new AddBudgetScreenViewModel();
+            addBudgetScreenViewModel.NavigateToBudgetsScreen = ShowBudgetsScreen;
+            CurrentView = new AddBudgetScreen
+            {
+                DataContext = addBudgetScreenViewModel
             };
         }
 
